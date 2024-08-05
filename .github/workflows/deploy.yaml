@@ -1,0 +1,45 @@
+name: Deployment Pipeline
+
+on:
+  # will kick off a build on any push to the following patterns. If it's a non-main branch then only tests will run
+  push:
+    branches:
+      - 'main'
+      - 'fix/**'
+      - 'feature/**'
+      - 'hotfix/**'
+
+  # to kick off manually
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Version corresponding to the tag you wish to deploy (eg. v1.0.01192499)'
+        required: true
+        type: string
+      deploy-directly-to-prod:
+        description: |
+          Set to true if you would like to deploy directly to PROD in an emergency situation. 
+          Subject to environment deployment protections
+        required: false
+        type: boolean
+        default: false
+
+  # for running tests when a PR is created
+  pull_request:
+    types:
+      - opened
+    branches:
+      - 'main'
+
+jobs:
+  Mule-Pipeline:
+    uses: avioconsulting/shared-workflows/.github/workflows/mule-main.yml@feature/tsherman/mule-shared-workflows
+    secrets: inherit
+    with:
+      # If tag-name resolves to '' it will be used as 'early-access'
+      tag-name: ${{ inputs.tag-name }}
+      anypoint-org-name: 'AVIO Sandbox'
+      dev-env: 'DEV'
+      uat-env: 'UAT'
+      prod-env: 'PROD'
+      mule-deploy-args: "-DmuleDeploy.osv2Enabled=true"
