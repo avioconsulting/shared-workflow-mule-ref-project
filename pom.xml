@@ -172,6 +172,11 @@
 			<url>https://repository.mulesoft.org/releases/</url>
 			<layout>default</layout>
 		</repository>
+        <repository>
+          <id>avio-releases</id>
+          <name>AVIO Releases</name>
+          <url>https://avio.jfrog.io/artifactory/mulesoft-mvn-local/</url>
+        </repository>
 	</repositories>
 
 	<pluginRepositories>
