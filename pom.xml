@@ -15,7 +15,6 @@
 		<app.runtime>4.4.0-20230320</app.runtime>
 		<mule.maven.plugin.version>3.8.2</mule.maven.plugin.version>
 		<munit.version>2.3.14</munit.version>
-		<mule.deploy.plugin.version>1.2.0</mule.deploy.plugin.version>
 		<muleApplicationName>${project.artifactId}-v1-${mule.env}</muleApplicationName>
 		<revision>local</revision>
 		<artifactPath>dummy</artifactPath>
@@ -62,55 +61,8 @@
 					</coverage>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>com.avioconsulting.mule</groupId>
-				<artifactId>mule-deploy-maven-plugin</artifactId>
-				<version>${mule.deploy.plugin.version}</version>
-				<executions>
-					<execution>
-						<id>validate</id>
-						<phase>package</phase>
-						<goals>
-							<goal>validate</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>DEV</id>
-			<properties>
-				<env>DEV</env>
-				<workers>1</workers>
-				<workerSize>MICRO</workerSize>
-				<region>us-east-2</region>
-				<environment>DEV</environment>
-			</properties>
-		</profile>
-		<profile>
-			<id>UAT</id>
-			<properties>
-				<env>UAT</env>
-				<workers>1</workers>
-				<workerSize>MICRO</workerSize>
-				<region>us-east-2</region>
-				<environment>DEV</environment>
-			</properties>
-		</profile>
-		<profile>
-			<id>PROD</id>
-			<properties>
-				<env>PROD</env>
-				<workers>2</workers>
-				<workerSize>MICRO</workerSize>
-				<region>us-east-2</region>
-				<environment>DEV</environment>
-			</properties>
-		</profile>
-	</profiles>
 
 	<dependencies>
 		<dependency>
