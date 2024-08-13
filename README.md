@@ -14,7 +14,7 @@ To build and test the project run the following command:
 mvn clean package -Dmule.key=<enter super secret key> -Dmule.env=DEV
 ```
 
-## How to deloy
+## How to deploy
 This project utilizes the Mule Maven Plugin configuration for deploying to MuleSoft's CloudHub 1.0. It currently is set to authenticate with Client Credentials that are provided at deployment time. You can run the following command to deploy this application to your MuleSoft CloudHub 1.0 environment.
 
 > A few updates you will need to make is changing the `<environment>` tag inside your desired profile to the same name as the environment you intend to deploy to, as well as updating the `<businessGroup>` in the Mule Maven Plugin configuration for your intended business group.
